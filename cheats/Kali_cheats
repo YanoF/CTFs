@@ -1,0 +1,72 @@
+I shall just leave document right here, i made it for my own studies but I think there's someone out there who could probably find it useful some day. So first things first, your one stop shop for everything Linux is right there with you on your MAN PAGES!! Secondly RTFM!! Let that sink in and I repeat, RTFM!
+
+man IPTABLES 101: https://www.howtogeek.com/177621/the-beginners-guide-to-iptables-the-linux-firewall/
+
+Also theres this cool site: https://linuxjourney.com/
+
+Enjoy.
+
+
+Introduction to sed and awk
+---------------------------
+
+It is very common to create and then repeatedly edit and/or extract contents from a file. Let’s learn how to use sed and awk to easily perform such operations.
+
+sed
+---
+
+sed is a powerful text processing tool and is one of the oldest, earliest and most popular UNIX utilities. It is used to modify the contents of a file or input stream, usually placing the contents into a new file or output stream. Its name is an abbreviation for stream editor.
+
+sed can filter text, as well as perform substitutions in data streams.
+
+Data from an input source/file (or stream) is taken and moved to a working space. The entire list of operations/modifications is applied over the data in the working space and the final contents are moved to the standard output space (or stream).
+
+awk
+---
+
+awk is used to extract and then print specific contents of a file and is often used to construct reports. It was created at Bell Labs in the 1970s and derived its name from the last names of its authors: Alfred Aho, Peter Weinberger, and Brian Kernighan.
+
+awk has the following features:
+
+           - It is a powerful utility and interpreted programming language.
+           - It is used to manipulate data files, retrieving, and processing text.
+           - It works well with fields (containing a single piece of data, essentially a column) and records (a collection of fields, essentially a line in a file).
+
+
+File Manipulation utilities.
+----------------------------
+
+sort
+uniq
+paste
+join
+split
+
+
+Regular Expressions and Search Patterns
+---------------------------------------
+
+Regular expressions are text strings used for matching a specific pattern, or to search for a specific location, such as the start or end of a line or a word. Regular expressions can contain both normal characters or so-called meta-characters, such as * and $.
+
+Many text editors and utilities such as vi, sed, awk, find and grep work extensively with regular expressions. Some of the popular computer languages that use regular expressions include Perl, Python and Ruby. It can get rather complicated and there are whole books written about regular expressions; thus, we will do no more than skim the surface here.
+
+These regular expressions are different from the wildcards (or meta-characters) used in filename matching in command shells such as bash. The table lists search patterns and their usage.
+
+Search 		Patterns 	Usage
+.(dot) 		Match any single character
+a|z 		Match a or z
+$ 			Match end of string
+^ 			Match beginning of string
+* 			Match preceding item 0 or more times
+
+tee command.
+
+tee takes the output from any command, and, while sending it to standard output, it also saves it to a file. In other words, it tees the output stream from the command: one stream is displayed on the standard output and the other is saved to a file.
+
+For example, to list the contents of a directory on the screen and save the output to a file, at the command prompt type ls -l | tee newfile and press the Enter key.
+
+Typing cat newfile will then display the output of ls –l.
+
+
+
+
