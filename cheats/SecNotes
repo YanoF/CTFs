@@ -1,0 +1,25 @@
+Windows Hacking Basics.
+
+-Windows Architecture
+Bootstrap process
+Memory segments.
+File sys
+Process
+Protection ring (Ring 0 being of the highest priv)
+Permissions.
+
+-Credential Security.
+Security Accounts Manager (SAM)
+LANMAN (LM) and NTLMv2
+
+-Memory Corruption
+-Stack corruption (buffer overflow)
+Use-after-free
+Heap corruption, heap overflow, type confusion.
+DEP and ASLR
+
+Memory or binary exploitation.
+
+
+apt install pycharm-community --classic
+

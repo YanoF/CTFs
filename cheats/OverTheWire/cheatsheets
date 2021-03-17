@@ -1,0 +1,10 @@
+Level0
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+
+find . -type f | xargs file
+
+find . -type f -size 1033c ! -executable   [5 to 6]
+
+find / -type f -user bandit7 -group bandit6 -size 33c  [6 t0 7]
+
+HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs - for bandit 8

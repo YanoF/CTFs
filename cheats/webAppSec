@@ -1,0 +1,33 @@
+HTTP Verbs and request formats.
+
+Requests.
+
+There are 9 different HTTP  "verbs", also known as methods. Each one has a different function. We've mentioned GET requests already, these are used to retrieve content. 
+POST requests are used to send data to a web server, like adding a comment or performing a login.
+There are several more verbs, but these aren't as commonly used for most web servers.
+A HTTP request can be broken down into parts. The first line is a verb and a path for the server, such as
+
+GET /index.html
+
+
+
+
+
+
+
+
+Getting cookie parameters
+
+curl -c - http://<Target IP>:targetport/getcookie
+
+Send a cookie
+
+curl -v --cookie 'flagpls=flagpls' http://10.10.93.188:8081/ctf/sendcookie 
+
+making a GET request.
+
+curl http://10.10.93.188:8081/ctf/get
+
+Making a POST request.
+
+curl -X POST --data "flag_please" http://10.10.93.188:8081/ctf/post
