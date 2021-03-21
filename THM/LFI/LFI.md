@@ -33,7 +33,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 ````
 ````
-We can perform dir traversal using thr ../../../etc/passwd.
+We can perform dir traversal using the ../../../etc/passwd.
 This yields a rather interesting rest: #falconfeast:rootpassword
 
 Port 22 is open, we can then ssh using these obtained creds and attempt to privesc to get a root shell.
