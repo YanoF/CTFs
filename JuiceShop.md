@@ -167,5 +167,30 @@ The application might be vulnerable if the application is:
 #XSS Game: https://xss-game.appspot.com/
 
 ````
+There are three forms of XSS, usually targeting users’ browsers:
+- Reflected XSS: The application or API includes unvalidated and unescaped user input as part of HTML output. A successful attack can allow the attacker to execute arbitrary HTML and JavaScript in the victim’s browser. Typically the user will need to interact with some malicious link that points to an attacker-controlled page, such as malicious watering hole websites, advertisements, or similar.
+
+- Stored XSS: The application or API stores unsanitized user input that is viewed at a later time by another user or an administrator. Stored XSS is often considered a high or critical risk.
+
+- DOM XSS: JavaScript frameworks, single-page applications, and APIs that dynamically include attacker-controllable data to a page are vulnerable to DOM XSS. Ideally, the application would not send attacker-controllable data to unsafe JavaScript APIs.
+
+Typical XSS attacks include session stealing, account takeover, MFA bypass, DOM node replacement or defacement (such as trojan login panels), attacks against the user’s browser such as malicious software downloads, key logging, and other client-side attacks.
+
+
+Basically:
+	-Encoding: < becomes &lt; <script> becomes &lt;script>
+	-Filtering: <script> becomes script
+	-Validating: compare input against whitelist.
+	-Sanitization: combination of escaping, filtering, and validation.
+
+xss payload: <iframe src="javascript:alert('xss')>"
 
 ````
+More xss payloads: https://github.com/pgaijin66/XSS-Payloads/blob/master/payload/payload.txt
+
+#OWASP A8-Insecure Deserialization: https://www.owasp.org/index.php/Top_10-2017_A8-Insecure_Deserialization
+
+
+#OWASP A9-Using Components with Known Vulnerabilities: https://www.owasp.org/index.php/Top_10-2017_A9-Using_Components_with_Known_Vulnerabilities
+
+#OWASP A10-Insufficient Logging & Monitoring: https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A10-Insufficient_Logging%252526Monitoring.html
