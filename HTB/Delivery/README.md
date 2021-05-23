@@ -42,7 +42,7 @@ other external links, we find two other services running on this box.
 
 MatterMost seems interesting enoug, we'll enumerate this further.
 
-
+![](images/1mattermost.PNG)
 
 So what exactly is this service? Time to head over to Google.
 
@@ -56,7 +56,7 @@ This seems to be a dead end. This is a relatively new software, primarily writte
 
 The landing page.
 
-
+![](images/landing.PNG)
 
 >This is powered by osTicket’s Support Ticket System.
 >Widely used and open source support ticketing system.
@@ -64,12 +64,12 @@ The landing page.
 
 > On the contact us page;
 
-
+![](images/contact.PNG)
 
 
 >So let's create a ticket.
 >upon submission, we are presented with an email:
-
+![](images/submission.PNG)
 
 
 Email: 1168568@delivery.htb
@@ -88,12 +88,13 @@ To get the confirmation email, we’ll need to access the support ticket created
 Going back to the Help Desk, and use the Check Ticket Status option. View the ticket, use the ticket ID 
 and the customer email (drt@local.host) to view the data.
 
+![](images/View.PNG)
 
 
 Check the page for the confirmation link to MatterMost.
 
 Copy/paste the confirmation URL into the web browser and gain access to the MatterMost instance.
-
+![](images/root.PNG)
 
 
 
@@ -108,6 +109,7 @@ Lets ssh in
 
 And Jackpot! We have the user flag.
 
+![](images/jackpot.PNG)
 
 
 An interesting process that I have identified running is mysql db. This makes sense because from the architecture of this 
@@ -116,7 +118,7 @@ system, the tickets would need to be stored somewhere.
 Let's have a look at the /opt/mattermost/config/config.json that contains config files.
 
 From here we can find the creds in plaintext to gain access to mysql DB.
-
+![](images/mysql.PNG)
 
 
 mmuser:Crack_The_MM_Admin_PW
@@ -125,14 +127,14 @@ mysql -u mmuser -D mattermost -p
 
 SELECT username, password FROM Users WHERE username = 'root';
 
-
+![](images/hash.PNG)
 
 
 
 root     | $2a$10$VM6EeymRxJ29r8Wjkr8Dtev0O.1STWb4.4ScG.anuu7v0EFJwgjjO
 
 Remeber this comment from the root user from the forum?
-
+![](images/comment.PNG)
 
 
 We’re going to use PleaseSubscribe! as our wordlist. Create a new file called wordlist.txt and add PleaseSubscribe! to it. 
@@ -144,6 +146,7 @@ hashcat -a 0 -m 3200 hash.txt wordlist.txt -r Hob0Rules/d3adhob0.rule -o cracked
 
 https://github.com/praetorian-inc/Hob0Rules.git
 
+![](images/hashcat.PNG)
 
 
 
