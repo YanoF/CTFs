@@ -8,10 +8,12 @@ nmap scan as usual, open ports as below:
 -Port 80 running HTTP.
 -Port 8065 running an unknown service.
 
+![](initial.png)
 
 
 
-Enumeration: Web Site.
+#Enumeration: Web Site.
+![](web.png)
 
 
 
@@ -27,8 +29,10 @@ it’s safe to assume that these are local to this machine.
 We can edit the /etc/hosts file on our Kali box to tell the web browser that any DNS
 resolution of those URLs should point to the IP address of the HTB server.
 
-# add to /etc/hosts
+add to /etc/hosts
+
 10.10.10.222  delivery.htb
+
 10.10.10.222  helpdesk.delivery.htb
 
 We can now go to http://delivery.htb/ and it will display the same landing page as before. Going to the 
@@ -48,7 +52,7 @@ itself as an open-source alternative to Slack and Microsoft Teams.
 
 This seems to be a dead end. This is a relatively new software, primarily written in Go. No exploit in exploitdb as of yet.
 
-Enumeration: Help Desk
+#Enumeration: Help Desk
 
 The landing page.
 
