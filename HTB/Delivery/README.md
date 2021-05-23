@@ -13,6 +13,7 @@ nmap scan as usual, open ports as below:
 
 
 #Enumeration: Web Site.
+![](web.png)
 
 
 
