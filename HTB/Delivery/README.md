@@ -30,7 +30,9 @@ We can edit the /etc/hosts file on our Kali box to tell the web browser that a
 resolution of those URLs should point to the IP address of the HTB server.
 
 add to /etc/hosts
+
 10.10.10.222  delivery.htb
+
 10.10.10.222  helpdesk.delivery.htb
 
 We can now go to http://delivery.htb/ and it will display the same landing page as before. Going to the 
