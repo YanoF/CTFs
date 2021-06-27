@@ -1,0 +1,1 @@
+# Nmap 7.91 scan initiated Wed May 26 11:07:20 2021 as: nmap -sC -sV -A -T4 -oN fullscan -p- --script=vuln 10.10.10.239
