@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Sat Jul 10 13:42:15 2021 as: nmap -sV -sC -T4 -oA nmap/nmapscan 10.10.10.247
+Host: 10.10.10.247 ()	Status: Up
+Host: 10.10.10.247 ()	Ports: 2222/open/tcp//ssh//(protocol 2.0)/, 5555/filtered/tcp//freeciv///	Ignored State: closed (998)
+# Nmap done at Sat Jul 10 13:42:36 2021 -- 1 IP address (1 host up) scanned in 20.37 seconds
