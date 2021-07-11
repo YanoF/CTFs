@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Sun Jul 11 09:10:16 2021 as: nmap -sV -sC -T4 -p- -oA fullscan/fullcan 192.168.213.128
+Host: 192.168.213.128 ()	Status: Up
+Host: 192.168.213.128 ()	Ports: 22/open/tcp//ssh//OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)/, 80/open/tcp//http//Apache httpd 2.4.38 ((Debian))/, 88/open/tcp//http//nginx 1.14.2/, 110/open/tcp//pop3//Courier pop3d/, 995/open/tcp//ssl|pop3//Courier pop3d/	Ignored State: closed (65530)
+# Nmap done at Sun Jul 11 09:28:18 2021 -- 1 IP address (1 host up) scanned in 1082.29 seconds
