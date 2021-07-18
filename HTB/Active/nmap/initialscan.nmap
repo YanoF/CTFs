@@ -1,0 +1,37 @@
+# Nmap 7.91 scan initiated Fri Jul 16 15:19:25 2021 as: nmap -sV -sC -T4 -oA nmap/initialscan --script=vuln 10.10.10.100
+Nmap scan report for 10.10.10.100
+Host is up (0.20s latency).
+Not shown: 983 closed ports
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Microsoft DNS 6.1.7601 (1DB15D39) (Windows Server 2008 R2 SP1)
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2021-07-16 19:32:39Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: active.htb, Site: Default-First-Site-Name)
+|_sslv2-drown: 
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+|_sslv2-drown: 
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: active.htb, Site: Default-First-Site-Name)
+|_sslv2-drown: 
+3269/tcp  open  tcpwrapped
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+|_sslv2-drown: 
+49152/tcp open  msrpc         Microsoft Windows RPC
+49153/tcp open  msrpc         Microsoft Windows RPC
+49154/tcp open  msrpc         Microsoft Windows RPC
+49155/tcp open  msrpc         Microsoft Windows RPC
+49157/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49158/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Host: DC; OS: Windows; CPE: cpe:/o:microsoft:windows_server_2008:r2:sp1, cpe:/o:microsoft:windows
+
+Host script results:
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Jul 16 15:21:09 2021 -- 1 IP address (1 host up) scanned in 103.65 seconds
