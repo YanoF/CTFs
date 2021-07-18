@@ -1,0 +1,76 @@
+# Nmap 7.91 scan initiated Sun Jul 18 11:57:07 2021 as: nmap --script safe -p 445 -oN smbenum 10.10.10.100
+Pre-scan script results:
+| broadcast-dhcp-discover: 
+|   Response 1 of 1: 
+|     Interface: wlan0
+|     IP Offered: 192.168.100.28
+|     Server Identifier: 192.168.100.1
+|     Subnet Mask: 255.255.255.0
+|     Router: 192.168.100.1
+|_    Domain Name Server: 192.168.100.1
+| broadcast-igmp-discovery: 
+|   192.168.100.25
+|     Interface: wlan0
+|     Version: 2
+|     Group: 239.255.255.250
+|     Description: Organization-Local Scope (rfc2365)
+|_  Use the newtargets script-arg to add the results as targets
+| broadcast-listener: 
+|   udp
+|       DHCP
+|         srv ip         cli ip          mask           gw             dns            vendor
+|         192.168.100.1  192.168.100.28  255.255.255.0  192.168.100.1  192.168.100.1  -
+|       SSDP
+|         ip              uri
+|_        192.168.100.25   urn:schemas-upnp-org:device:MediaServer:1
+| broadcast-upnp-info: 
+|   239.255.255.250
+|       Server: Linux/4.9.44+, UPnP/1.0, Portable SDK for UPnP devices/1.6.13
+|_      Location: http://192.168.100.25:9080
+|_eap-info: please specify an interface with -e
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for active.htb (10.10.10.100)
+Host is up (0.67s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+|_clock-skew: 12m49s
+| dns-blacklist: 
+|   SPAM
+|_    l2.apews.org - FAIL
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: Incremental!
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_path-mtu: PMTU == 1500
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb-protocols: 
+|   dialects: 
+|     2.02
+|_    2.10
+| smb2-capabilities: 
+|   2.02: 
+|     Distributed File System
+|   2.10: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2021-07-18T09:10:46
+|_  start_date: 2021-07-16T18:04:23
+| unusual-port: 
+|_  WARNING: this script depends on Nmap's service/version detection (-sV)
+
+Post-scan script results:
+| reverse-index: 
+|_  445/tcp: 10.10.10.100
+# Nmap done at Sun Jul 18 11:58:19 2021 -- 1 IP address (1 host up) scanned in 71.40 seconds
